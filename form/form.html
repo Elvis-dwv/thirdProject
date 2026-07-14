@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="form.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="topbar">
+  <div class="brand">
+    <span class="dot"></span>
+    <span>Station Builder<br><small>Details intake — page generation happens after this step</small></span>
+  </div>
+  <div class="topbar-status"><span class="pulse"></span>Draft — not yet generated</div>
+</div>
+
+<div class="layout">
+
+  <!-- SIDEBAR STEPPER -->
+  <aside class="sidebar">
+    <span class="eyebrow">Channels</span>
+    <ul class="channel-list" id="channelList">
+      <li><a href="#identity"><span class="ch-num mono">01</span>Identity</a></li>
+      <li><a href="#bio"><span class="ch-num mono">02</span>Bio</a></li>
+      <li><a href="#about"><span class="ch-num mono">03</span>About</a></li>
+      <li><a href="#contact"><span class="ch-num mono">04</span>Contact</a></li>
+      <li><a href="#podcast"><span class="ch-num mono">05</span>Podcast</a></li>
+      <li><a href="#dashboard"><span class="ch-num mono">06</span>Main segment</a></li>
+      <br>
+      <li><a href="../main/index.html"><span class="ch-num mono">-</span>🏠Home</a></li>
+    </ul>
+  </aside>
+
+  <!-- MAIN FORM -->
+  <main>
+    <div class="intro">
+      <h1>Set up your page details</h1>
+      <p>Fill in each channel below. Everything you enter feeds the preview on the right — this step only collects your details, the finished page is generated afterward.</p>
+    </div>
+
+    <!-- 01 IDENTITY -->
+    <section class="card" id="identity">
+      <div class="card-head"><span class="tag mono">CH.01</span><h2>Identity</h2></div>
+      <p class="hint">Your logo or photo and the name your page will be built around.</p>
+
+      <div class="field">
+        <label>Picture / logo <span class="req">required</span></label>
+        <div class="uploader">
+          <div class="upload-preview" id="picPreview">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M4 16l4.5-6 3.5 4.5L15 10l5 8H4z"/><circle cx="8" cy="8" r="1.5"/></svg>
+          </div>
+          <label class="upload-drop" id="picDrop" for="picInput">
+            <span class="u-text"><strong>Drop an image here</strong>PNG or JPG, square works best</span>
+            <span class="u-btn">Browse</span>
+          </label>
+          <input type="file" id="picInput" accept="image/*">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Company / business name <span class="req">required</span></label>
+        <input type="text" id="bizName" placeholder="e.g. LTC Radio &amp; Television">
+      </div>
+    </section>
+
+    <!-- 02 BIO -->
+    <section class="card" id="bio">
+      <div class="card-head"><span class="tag mono">CH.02</span><h2>Bio</h2></div>
+      <p class="hint">One short line that captures what you do — this becomes your tagline or hero line.</p>
+      <div class="field">
+        <label>Short bio <span class="count mono" id="bioCount">0 / 120</span></label>
+        <textarea id="bioText" maxlength="120" rows="2" placeholder="e.g. Bring the conversation to your terrain."></textarea>
+      </div>
+    </section>
+
+    <!-- 03 ABOUT -->
+    <section class="card" id="about">
+      <div class="card-head"><span class="tag mono">CH.03</span><h2>About</h2></div>
+      <p class="hint">The longer story — who you are, what you cover, why it matters. This fills your About section.</p>
+      <div class="field">
+        <label>About your business <span class="count mono" id="aboutCount">0 / 600</span></label>
+        <textarea id="aboutText" maxlength="600" rows="5" placeholder="Tell people what your station or business is about..."></textarea>
+      </div>
+    </section>
+
+    <!-- 04 CONTACT -->
+    <section class="card" id="contact">
+      <div class="card-head"><span class="tag mono">CH.04</span><h2>Contact</h2></div>
+      <p class="hint">How people reach you. Shown on your Contact section.</p>
+      <div class="grid-2">
+        <div class="field">
+          <label>Email <span class="req">required</span></label>
+          <input type="email" id="cEmail" placeholder="hello@yourbrand.com">
+        </div>
+        <div class="field">
+          <label>Phone</label>
+          <input type="tel" id="cPhone" placeholder="+234 000 000 0000">
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="field">
+          <label>Address / HQ</label>
+          <input type="text" id="cAddress" placeholder="City, Country">
+        </div>
+        <div class="field">
+          <label>Website or social link</label>
+          <input type="url" id="cSocial" placeholder="https://">
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 PODCAST -->
+    <section class="card" id="podcast">
+      <div class="card-head"><span class="tag mono">CH.05</span><h2>Podcast</h2></div>
+      <p class="hint">Upload an episode and describe it. Each one you add gets queued as its own section page.</p>
+
+      <div class="field">
+        <label>Episode audio file</label>
+        <label class="file-drop" id="audioDrop" for="audioInput">
+          <div class="u-text"><strong>Drop your podcast file here</strong>MP3, WAV or M4A</div>
+        </label>
+        <input type="file" id="audioInput" accept="audio/*">
+        <div class="file-chip" id="audioChip">
+          <span id="audioName" class="mono"></span>
+          <span class="remove" id="audioRemove">Remove</span>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label>Episode title</label>
+          <input type="text" id="epTitle" placeholder="e.g. Behind the ballot: what the numbers hide">
+        </div>
+        <div class="field">
+          <label>Episode length</label>
+          <input type="text" id="epLength" placeholder="e.g. 42 min">
+        </div>
+      </div>
+      <div class="field">
+        <label>Episode description</label>
+        <textarea id="epDesc" rows="3" placeholder="What's this episode about?"></textarea>
+      </div>
+
+      <div class="gen-row">
+        <span class="gen-note">Adds this episode to your podcast page queue.</span>
+        <button class="gen-btn" id="addEpisode">+ Add to podcast page</button>
+      </div>
+      <div class="queue" id="episodeQueue"></div>
+    </section>
+
+    <!-- 06 DASHBOARD / MAIN SEGMENT -->
+    <section class="card" id="dashboard">
+      <div class="card-head"><span class="tag mono">CH.06</span><h2>Main segment</h2></div>
+      <p class="hint">Your dashboard for the featured content that leads your page — a flagship show, top story, or key offering. Each one becomes its own section page.</p>
+
+      <div class="field">
+        <label>Segment cover image</label>
+        <label class="upload-rect" id="segDrop" for="segInput">
+          <div class="u-text"><strong>Drop a cover image</strong>16:9 works best</div>
+        </label>
+        <input type="file" id="segInput" accept="image/*">
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label>Segment title</label>
+          <input type="text" id="segTitle" placeholder="e.g. Exclusive News Story Show">
+        </div>
+        <div class="field">
+          <label>Category</label>
+          <input type="text" id="segCategory" placeholder="e.g. Flagship show, Top story, Featured product">
+        </div>
+      </div>
+      <div class="field">
+        <label>Segment description</label>
+        <textarea id="segDesc" rows="3" placeholder="What makes this the main thing on your page?"></textarea>
+      </div>
+
+      <div class="gen-row">
+        <span class="gen-note">Adds this segment to your dashboard queue.</span>
+        <button class="gen-btn" id="addSegment">+ Add to dashboard</button>
+      </div>
+      <div class="queue" id="segmentQueue"></div>
+    </section>
+
+    <!-- FINAL SAVE -->
+    <div class="save-card">
+      <div>
+        <h2>All set for now</h2>
+        <p>This saves your details and queued sections. Generating the finished page — like the ones you've seen before — is a separate step.</p>
+      </div>
+      <button class="save-btn" id="saveDetails">Save details</button>
+    </div>
+  </main>
+
+  <!-- LIVE PREVIEW -->
+  <aside class="preview-col">
+    <span class="eyebrow"><span class="pulse"></span>Live preview</span>
+    <div class="monitor">
+      <div class="monitor-screen">
+        <div class="pv-avatar" id="pvAvatar">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M4 16l4.5-6 3.5 4.5L15 10l5 8H4z"/><circle cx="8" cy="8" r="1.5"/></svg>
+        </div>
+        <div class="pv-name" id="pvName">Your business name</div>
+        <div class="pv-bio" id="pvBio">Your short bio will appear here.</div>
+        <div class="pv-divider"></div>
+        <div class="pv-label">About</div>
+        <div class="pv-about" id="pvAbout">Your about text will show up here once you write it.</div>
+        <div class="pv-divider"></div>
+        <div class="pv-label">Contact</div>
+        <div class="pv-contact" id="pvContact">— not yet added —</div>
+        <div class="pv-tags" id="pvTags"></div>
+      </div>
+    </div>
+    <p class="preview-foot">This is a rough preview of your details, not the final design — your generated page will follow its own layout, like the LTC or Korie pages.</p>
+  </aside>
+
+</div>
+
+<div class="toast" id="toast"><span class="td"></span><span id="toastText">Saved</span></div>
+</body>
+<script src="form.js"></script>
+</html>

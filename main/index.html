@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Frequency.fm | Web App</title>
+</head>
+<body>
+
+<div class="app-container">
+    <nav class="sidebar">
+        <div class="brand">
+            <h1>FREQ<span>.fm</span></h1>
+            <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle color theme">
+                <span class="theme-toggle__icon">🌙</span>
+                <span class="theme-toggle__label">Dark</span>
+            </button>
+        </div>
+        <div class="nav-menu">
+            <button class="nav-btn active" data-tab="home">🏠 Home</button>
+            <p class="nav-heading">MENU</p>
+            <button class="nav-btn" data-tab="schedule">📅 Schedule</button>
+            <button class="nav-btn" data-tab="ondemand">🎙️ Podcasts</button>
+        </div>
+        <div class="saved-clips-section">
+            <p class="nav-heading">SAVED CLIPS</p>
+            <ul id="savedClipsList" class="saved-clips-list">
+                </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section id="home" class="tab-panel active">
+            <header class="section-header hero-home-header">
+                <h2>Home</h2>
+                <p>Discover your station experience from this landing page.</p>
+            </header>
+
+            <div class="home-feature-card">
+                <div class="home-feature-card__content">
+                    <p class="home-feature-label">Featured</p>
+                    <h3>Live Stations</h3>
+                    <p>Pick a live channel to tune in instantly and start listening.</p>
+                </div>
+                <div class="station-grid" id="stationList"></div>
+            </div>
+
+            <div class="home-section">
+                <h3>Station Directory</h3>
+                <div class="station-placeholder-grid" id="stationDirectoryList"></div>
+                <div class="stations-footer">
+                    
+                  <a href="../form/form.html" class="big-add-btn" aria-label="Add Station">+</a>
+                    
+                </div>
+            </div>
+        </section>
+
+        <section id="schedule" class="tab-panel">
+            <header class="section-header">
+                <h2>Program Guide</h2>
+                <div class="day-filters" id="dayFilters">
+                    <button class="day-btn active" data-day="All">All</button>
+                    <button class="day-btn" data-day="Mon">Mon</button>
+                    <button class="day-btn" data-day="Tue">Tue</button>
+                    <button class="day-btn" data-day="Wed">Wed</button>
+                    <button class="day-btn" data-day="Thu">Thu</button>
+                    <button class="day-btn" data-day="Fri">Fri</button>
+                </div>
+            </header>
+            <div class="schedule-list" id="scheduleList"></div>
+        </section>
+
+        <section id="ondemand" class="tab-panel">
+            <header class="section-header">
+                <h2>Podcasts & Episodes</h2>
+                <p>On-demand audio. Highlight a timestamp to save a clip!</p>
+            </header>
+            <div class="clip-grid" id="clipList"></div>
+            
+            <div class="clipping-tool">
+                <h3>✂️ Clip This Episode</h3>
+                <div class="clip-inputs">
+                    <input type="text" id="clipStart" placeholder="Start (e.g. 1:15)">
+                    <input type="text" id="clipEnd" placeholder="End (e.g. 2:30)">
+                    <input type="text" id="clipName" placeholder="Clip Name">
+                    <button id="saveClipBtn">Save Clip</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <aside class="right-panel">
+        <div class="panel-header">
+            <h3>Live Community</h3>
+            <span class="live-dot"></span>
+        </div>
+        <div class="request-feed" id="requestFeed">
+            </div>
+        <form class="request-form" id="requestForm">
+            <input type="text" id="reqName" placeholder="Your Name" required>
+            <input type="text" id="reqMessage" placeholder="Request a song or shoutout!" required>
+            <button type="submit">Send</button>
+        </form>
+    </aside>
+
+    <footer class="bottom-player" id="playerBar">
+        <div class="player-left">
+            <div class="brand-color-block" id="playerColorBlock"></div>
+            <div class="now-playing-info">
+                <p class="np-title" id="npTitle">Nothing playing</p>
+                <p class="np-sub" id="npSub">Select a station or podcast</p>
+            </div>
+        </div>
+
+        <div class="player-center">
+            <div class="player-controls">
+                <button class="ctrl-btn" id="skipBack">⏮</button>
+                <button class="play-pause-btn" id="playBtn" disabled>▶</button>
+                <button class="ctrl-btn" id="skipFwd">⏭</button>
+            </div>
+            <div class="progress-container">
+                <span id="currentTime">0:00</span>
+                <input type="range" id="progressBar" value="0" min="0" max="100" disabled>
+                <span id="durationTime">0:00</span>
+            </div>
+        </div>
+
+        <div class="player-right">
+            <button class="toggle-viz active" id="toggleViz" title="Toggle Visualizer">🌊</button>
+            <canvas id="waveform" width="120" height="40"></canvas>
+            <label for="volumeSlider">🔊</label>
+            <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.8">
+        </div>
+    </footer>
+</div>
+
+<audio id="mainAudio"></audio>
+<script src="script.js"></script>
+</body>
+</html>
